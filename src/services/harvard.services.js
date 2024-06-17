@@ -1,25 +1,37 @@
 import ModelFactory from "../models/DAO/Factory.js";
 import config from "../../config.js";
 
-class ProductsServices {
-    constructor() {
+//Chequear el tema del modelo, usamos DAO, Factory, todo eso?
+//Consultar sobre esto, no se cómo hacerlo sin clases:      
+/*constructor() {
       this.model = ModelFactory.get(config.PERSISTENCE);
-    }
-  
-    getProducts = async () => {
-      const products = await this.model.getProducts();
-      return products;
-    };
-  
-    getProductsById = async (id) => {
-      const product = await this.model.getProductsById(id);
-      return product;
-    };
+} 
 
-    newProduct = async (prod) => {
-      const product = await this.model.newProduct(prod);
-      return product;
-    };
+Es así como está abajo?
+*/
+
+const model = ModelFactory.get(config.PERSISTENCE)
+
+const getObras = async () => {
+  const obras = await model.getObras()
+  return obras
 }
-  
-export default ProductsServices;
+
+const postObra = async (nuevaObra) => {
+  const obras = await model.postObra(nuevaObra)
+  return obras
+}
+
+const updateObra = async (id, actualizacionObra) => {
+  const obras = await model.updateObra(id, actualizacionObra)
+  return obras
+}
+
+const deleteObra = async (id) => {
+  const obras = await model.deleteObra(id)
+  return obras
+}
+
+export default {
+  getObras, postObra, updateObra, deleteObra
+}
