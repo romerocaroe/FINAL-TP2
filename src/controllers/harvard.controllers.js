@@ -1,28 +1,53 @@
-const express = require('express');
-const router = express.Router();
-const Product = require('../models/Product');
+import service from '../services/harvard.services.js'
 
-// Get all products
-router.get('/products', async (req, res) => {
-  try {
-    const products = await Product.find();
-    res.json(products);
-  } catch (error) {
-    res.status(500).json({ error: 'Internal server error' });
-  }
-});
-
-// Get a single product by ID
-router.get('/products/:id', async (req, res) => {
-  try {
-    const product = await Product.findById(req.params.id);
-    if (!product) {
-      return res.status(404).json({ error: 'Product not found' });
+const getObras = async (req, res) => {
+    try {
+        const obras = await service.getObras()
+        res.send(obras)
+    } catch (error) {
+        console.log("Error: ", error);
+        res.send({ statusCode: 500, message: "Internal server error." });
     }
-    res.json(product);
-  } catch (error) {
-    res.status(500).json({ error: 'Internal server error' });
-  }
-});
 
-module.exports = router;
+}
+
+const postObra = async (req, res) => {
+    try {
+        const nuevaObra = req.body
+        const obras = await service.postObra(nuevaObra)
+        res.send(obras)
+    } catch (error) {
+        console.log("Error: ", error);
+        res.send({ statusCode: 500, message: "Internal server error." });
+    }
+
+}
+
+const updateObra = async (req, res) => {
+    try {
+        const {id} = req.params
+        const actualizacionObra = req.body
+        const obras = await service.updateObra(id, actualizacionObra)
+        res.send(obras)
+    } catch (error) {
+        console.log("Error: ", error);
+        res.send({ statusCode: 500, message: "Internal server error." });
+    }
+
+}
+
+const deleteObra = async (req, res) => {
+    try {
+        const {id} = req.params
+        const obras = await service.deleteObra(id)
+        res.send(obras)
+    } catch (error) {
+        console.log("Error: ", error);
+        res.send({ statusCode: 500, message: "Internal server error." });
+    }
+
+}
+
+export default {
+    getObras, postObra, updateObra, deleteObra
+}

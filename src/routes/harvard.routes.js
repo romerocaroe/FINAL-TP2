@@ -1,14 +1,11 @@
 import express from 'express'
-import controller from '../controllers/harvard.controller.js'
+import controller from '../controllers/harvard.controllers.js'
 
 const router = express.Router()
 
-//Todas las notas
-router.get("/harvard", controller.getharvard)
-//Promedio
-router.get("/harvard/promedio", controller.getPromedioHarvard)
-router.post("/harvard", controller.postHarvard)
-router.put("/harvard/modificar/:id", controller.modificarHarvard)
-router.delete("/harvard/borrar/:id", controller.borrarHarvard)
+router.get("/harvard", controller.getObras)
+router.post("/harvard", controller.postObra)
+router.put("/harvard/update/:id", controller.updateObra)
+router.delete("/harvard/delete/:id", controller.deleteObra)
 
-export default router
+export default router;
