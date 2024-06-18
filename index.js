@@ -9,5 +9,5 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use("/", router);
 
-app.listen(8080, () => console.log(`Server listening on: ${process.env.PORT}`));
+app.listen(process.env.PORT, () => console.log(`Server listening on: ${process.env.PORT}`));
 app.on("error", (error) => console.log(`ERROR: ${error}`));
