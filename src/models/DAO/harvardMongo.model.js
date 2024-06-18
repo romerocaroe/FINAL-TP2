@@ -1,12 +1,12 @@
-import MongoConnection from "../MongoConnection.js";
+import Obra from "../obra.schema.js"
 
 const getObras = async () => {
-  const obras = await MongoConnection.db.collection("obras").find({}).toArray()
+  const obras = await Obra.find({}).toArray()
   return obras;
 }
 
 const postObra = async (nuevaObra) => {
-  const newObra = await MongoConnection.db.collection("obras").insertOne(nuevaObra)
+  const newObra = await Obra.insertOne(nuevaObra)
   return newObra
 }
 
@@ -28,7 +28,6 @@ title (string)
 dated (string)
 culture 
 url ()string
-
 
 author (people.name)(string)
  */
