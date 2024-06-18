@@ -1,3 +1,6 @@
+import config from '../../config.js'
+import { MongoClient } from "mongodb"
+
 class MongoConnection {
     static client = null
     static db = null
