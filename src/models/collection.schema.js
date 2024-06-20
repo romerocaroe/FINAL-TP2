@@ -1,16 +1,10 @@
 import mongoose from 'mongoose'
+import obra from './obra.schema.js'
 const Schema = mongoose.Schema;
 
-const obra = new Schema({
+const collection = new Schema({
   title: String,
-  description: String,
-  author: String,
-  technique: String,
-  image: String,
-  culture: String,
-  url: String,
-  division: String,
-  date: Date
+  obras: [obra]
 });
 
-export default mongoose.model('Obra', obra);
+export default mongoose.model('Collection', collection);
