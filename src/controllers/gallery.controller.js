@@ -1,4 +1,4 @@
-import service from '../services/harvard.services.js'
+import service from '../services/gallery.services.js'
 
 const getObras = async (req, res) => {
     try {
