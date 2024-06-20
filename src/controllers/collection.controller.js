@@ -14,7 +14,7 @@ const getCollections = async (req, res) => {
 const postCollection = async (req, res) => {
     try {
         const nuevaCollection = req.body
-        const collections = await service.postColecction(nuevaCollection)
+        const collections = await service.postCollection(nuevaCollection)
         res.send(collections)
     } catch (error) {
         console.log("Error: ", error);

@@ -1,7 +1,7 @@
 import collection from '../models/DAO/collectionMongo.model.js'
 
 const getCollections = async () => {
-  const collections = await collection.getcollections()
+  const collections = await collection.getCollections()
   return collections
 }
 
