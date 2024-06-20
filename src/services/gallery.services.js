@@ -1,4 +1,8 @@
+//import ModelFactory from "../models/DAO/Factory.js";
+//import config from "../../config.js";
 import gallery from "../models/DAO/galleryMongo.model.js"
+
+//const model = ModelFactory.get(config.PERSISTENCE)
 
 const getObras = async () => {
   const obras = await gallery.getObras()

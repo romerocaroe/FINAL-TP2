@@ -1,17 +1,16 @@
-import mongoose, { Collection } from 'mongoose'
+import mongoose from 'mongoose'
+import collection from './collection.schema.js'
+import obra from './obra.schema.js'
 const Schema = mongoose.Schema;
 
 const user = new Schema({
   username: String,
   name: String,
   lastname: String,
-  technique: String,
-  image: String,
-  culture: String,
-  url: String,
-  division: String,
-  date: { type: Date, default: Date.now },
-  collections: Collection
+  mail: String,
+  password: String,
+  collections: [collection],
+  likes: [obra]
 });
 
-export default mongoose.model('User', user);
+export default user

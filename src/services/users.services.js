@@ -1,29 +1,25 @@
-//import ModelFactory from "../models/DAO/Factory.js";
-//import config from "../../config.js";
-import users from "../models/DAO/galleryMongo.model.js"
+import Users from "../models/DAO/userMongo.model.js"
 
-//const model = ModelFactory.get(config.PERSISTENCE)
-
-const getObras = async () => {
-  const obras = await gallery.getObras()
-  return obras
+const getUsers = async () => {
+  const users = await Users.getUsers()
+  return users
 }
 
-const postObra = async (nuevaObra) => {
-  const obras = await gallery.postObra(nuevaObra)
-  return obras
+const postUser = async (nuevoUser) => {
+  const users = await Users.postUser(nuevoUser)
+  return users
 }
 
-const updateObra = async (id, actualizacionObra) => {
-  const obras = await gallery.updateObra(id, actualizacionObra)
-  return obras
+const updateUser = async (id, actualizacionUser) => {
+  const users = await Users.updateUser(id, actualizacionUser)
+  return users
 }
 
-const deleteObra = async (id) => {
-  const obras = await gallery.deleteObra(id)
-  return obras
+const deleteUser = async (id) => {
+  const users = await Users.deleteUser(id)
+  return users
 }
 
 export default {
-  getObras, postObra, updateObra, deleteObra
+  getUsers, postUser, updateUser, deleteUser
 }

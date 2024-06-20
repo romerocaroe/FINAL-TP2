@@ -14,20 +14,15 @@ const postUser = async (nuevaUser) => {
 }
 
 const updateUser = async (id, actualizacionUser) => {
-    actualizacionUser.id = id
-    const index = User.findIndex((user) => user.id === Number(id))
-    User.splice(index, 1, actualizacionUser)
+    const log = await User.updateOne({_id: id}, actualizacionUser)
+    console.log(log);
     return actualizacionUser
 }
 
 const deleteUser = async (id) => {
-    const index = User.findIndex((user) => user.id === Number(id))
-    if (index === -1) {
-        throw new Error("Id inexistente")
-    } else {
-        User.splice(index, 1)
-        return "User eliminada correctamente"
-    }
+    const log = await User.deleteOne(({ _id: id}))
+    console.log(log);
+    return "User eliminado correctamente"
 }
 
 export default {
