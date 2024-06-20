@@ -13,10 +13,7 @@ import obra from "../obra.schema.js"
 const Obra = mongoose.model('Obra', obra);
 
 const getObras = async () => {
-  const obras = await Obra.find({}) //.toArray()
-  /* if(obras.length <= 0){
-    await getObrasHarvard()
-  } */
+  const obras = await Obra.find({})
   return obras;
 }
 
@@ -26,40 +23,16 @@ const postObra = async (nuevaObra) => {
 }
 
 const updateObra = async (id, actualizacionObra) => {
-    actualizacionObra.id = id
-    const index = Obra.findIndex((obra) => obra.id === Number(id))
-    Obra.splice(index, 1, actualizacionObra)
+    await Obra.updateOne({_id: id}, actualizacionObra)
     return actualizacionObra
 }
 
 const deleteObra = async (id) => {
-    const index = Obra.findIndex((obra) => obra.id === Number(id))
-    if (index === -1) {
-        throw new Error("Id inexistente")
-    } else {
-        Obra.splice(index, 1)
-        return "Obra eliminada correctamente"
-    }
+    await Obra.deleteOne({_id: id})
+    return "Obra eliminada correctamente"
 }
 
 export default {
   getObras, postObra, updateObra, deleteObra
 }
 
-/* Hacer update y delete */
-
-
-/**
- * 
- * division (string)
-id ()
-primaryimageurl (string)
-technique (string)
-description (string)
-title (string)
-dated (string)
-culture 
-url ()string
-
-author (people.name)(string)
- */
