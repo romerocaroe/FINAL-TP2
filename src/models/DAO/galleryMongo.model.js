@@ -1,4 +1,5 @@
-import Obra from "../obra.schema.js"
+import mongoose from 'mongoose'
+import obra from "../obra.schema.js"
 
 /* const getObrasHarvard = async () => {
   axios
@@ -9,16 +10,18 @@ import Obra from "../obra.schema.js"
     .catch(error => console.log(error))
 } */
 
+const Obra = mongoose.model('Obra', obra);
+
 const getObras = async () => {
-  const obras = await Obra.find({}).toArray()
-  if(obras.length <= 0){
+  const obras = await Obra.find({}) //.toArray()
+  /* if(obras.length <= 0){
     await getObrasHarvard()
-  }
+  } */
   return obras;
 }
 
 const postObra = async (nuevaObra) => {
-  const newObra = await Obra.insertOne(nuevaObra)
+  const newObra = await Obra.insertMany(nuevaObra)
   return newObra
 }
 

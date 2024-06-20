@@ -10,7 +10,7 @@ const user = new Schema({
   culture: String,
   url: String,
   division: String,
-  date: Date,
+  date: { type: Date, default: Date.now },
   collections: Collection
 });
 
