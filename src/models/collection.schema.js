@@ -7,4 +7,4 @@ const collection = new Schema({
   obras: [obra]
 });
 
-export default mongoose.model('Collection', collection);
+export default collection
