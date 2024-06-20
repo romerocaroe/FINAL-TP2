@@ -1,17 +1,4 @@
-//import ModelFactory from "../models/DAO/Factory.js";
-//import config from "../../config.js";
 import gallery from "../models/DAO/galleryMongo.model.js"
-
-//Chequear el tema del modelo, usamos DAO, Factory, todo eso?
-//Consultar sobre esto, no se cómo hacerlo sin clases:      
-/*constructor() {
-      this.model = ModelFactory.get(config.PERSISTENCE);
-} 
-
-Es así como está abajo?
-*/
-
-//const model = ModelFactory.get(config.PERSISTENCE)
 
 const getObras = async () => {
   const obras = await gallery.getObras()

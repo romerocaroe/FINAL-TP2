@@ -13,4 +13,4 @@ const obra = new Schema({
   date: Date
 });
 
-export default mongoose.model('Obra', obra);
+export default obra
