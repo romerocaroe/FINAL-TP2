@@ -14,20 +14,15 @@ const postCollection = async (nuevaCollection) => {
 }
 
 const updateCollection = async (id, actualizacionCollection) => {
-    actualizacionCollection.id = id
-    const index = Collection.findIndex((collection) => collection.id === Number(id))
-    Collection.splice(index, 1, actualizacionCollection)
-    return actualizacionCollection
+  const log = await Collection.updateOne({_id: id}, actualizacionCollection)
+  console.log(log);
+  return actualizacionCollection
 }
 
 const deleteCollection = async (id) => {
-    const index = Collection.findIndex((collection) => collection.id === Number(id))
-    if (index === -1) {
-        throw new Error("Id inexistente")
-    } else {
-        Collection.splice(index, 1)
-        return "Collection eliminada correctamente"
-    }
+  const log = await Collection.deleteOne(({ _id: id}))
+  console.log(log);
+  return "Collection eliminado correctamente"
 }
 
 export default {
