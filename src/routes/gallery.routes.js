@@ -5,20 +5,20 @@ import controllerUsers from '../controllers/users.controller.js'
 
 const router = express.Router()
 
-router.get("/gallery", controllerGallery.getObras)
-router.post("/gallery", controllerGallery.postObra)
-router.put("/gallery/:id", controllerGallery.updateObra)
-router.delete("/gallery/:id", controllerGallery.deleteObra)
+router.get("/obra", controllerGallery.getObras)
+router.post("/obra", controllerGallery.postObra)
+router.put("/obra/:id", controllerGallery.updateObra)
+router.delete("/obra/:id", controllerGallery.deleteObra)
 
-router.get("/users", controllerUsers.getUsers)
-router.post("/users", controllerUsers.postUser)
-router.put("/users/:id", controllerUsers.updateUser)
-router.delete("/users/:id", controllerUsers.deleteUser)
+router.get("/usuario", controllerUsers.getUsers)
+router.post("/usuario", controllerUsers.postUser)
+router.put("/usuario/:id", controllerUsers.updateUser)
+router.delete("/usuario/:id", controllerUsers.deleteUser)
 
-router.get("/collection", collectionController.getCollections)
-router.post("/collection", collectionController.postCollection)
-router.put("/collection/:id", collectionController.updateCollection)
-router.delete("/collection/:id", collectionController.deleteCollection)
+router.get("/coleccion", collectionController.getCollections)
+router.post("/coleccion", collectionController.postCollection)
+router.put("/coleccion/:id", collectionController.updateCollection)
+router.delete("/coleccion/:id", collectionController.deleteCollection)
 
 
 export default router
