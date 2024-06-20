@@ -1,7 +1,7 @@
 import express from "express";
 import 'dotenv/config'
-import router from "./src/routes/harvard.routes.js";
-
+import router from "./src/routes/gallery.routes.js";
+import db from './db.js'
 const app = express();
 
 app.use(express.json()); 

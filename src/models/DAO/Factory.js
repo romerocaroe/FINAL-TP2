@@ -1,5 +1,5 @@
-import ObrasModelMemory from "./harvardMemory.model.js";
-import ObrasModelMongoDB from "./harvardMongo.model.js";
+import ObrasModelMemory from "./galleryMemory.model.js";
+import ObrasModelMongoDB from "./galleryMongo.model.js";
 
 class ModelFactory{
 

@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node .",
     "watch": "node --watch .",
-    "test": "mocha src/test/harvard.test.js"
+    "test": "mocha src/test/gallery.test.js"
   },
   "repository": {
     "type": "git",
