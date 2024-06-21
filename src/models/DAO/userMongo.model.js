@@ -8,23 +8,26 @@ const getUsers = async () => {
   return Users;
 }
 
+const getUserById = async (id) => {
+  const usuario = await User.findById({ _id: id})
+  return usuario;
+}
+
 const postUser = async (nuevaUser) => {
-  const newUser = await User.insertMany(nuevaUser)
+  const newUser = await User.create(nuevaUser)
   return newUser
 }
 
 const updateUser = async (id, actualizacionUser) => {
-    const log = await User.updateOne({_id: id}, actualizacionUser)
-    console.log(log);
+    await User.updateOne({_id: id}, actualizacionUser)
     return actualizacionUser
 }
 
 const deleteUser = async (id) => {
-    const log = await User.deleteOne(({ _id: id}))
-    console.log(log);
+    await User.deleteOne({ _id: id})
     return "User eliminado correctamente"
 }
 
 export default {
-  getUsers, postUser, updateUser, deleteUser
+  getUsers, getUserById, postUser, updateUser, deleteUser
 }
