@@ -6,7 +6,7 @@ const getObras = async (req, res) => {
         res.send(obras)
     } catch (error) {
         console.log("Error: ", error);
-        res.send({ statusCode: 500, message: "Internal server error." });
+        res.status(500).send({ statusCode: 500, message: "Internal server error." });
     }
 
 }
@@ -18,7 +18,7 @@ const getObraById = async (req, res) => {
         res.send(obra)
     } catch (error) {
         console.log("Error: ", error);
-        res.send({ statusCode: 500, message: "Internal server error." });
+        res.status(500).send({ statusCode: 500, message: "Internal server error." });
     }
 
 }
@@ -30,7 +30,7 @@ const postObra = async (req, res) => {
         res.send(obras)
     } catch (error) {
         console.log("Error: ", error);
-        res.send({ statusCode: 500, message: "Internal server error." });
+        res.status(500).send({ statusCode: 500, message: "Internal server error." });
     }
 
 }
@@ -43,7 +43,7 @@ const updateObra = async (req, res) => {
         res.send(obras)
     } catch (error) {
         console.log("Error: ", error);
-        res.send({ statusCode: 500, message: "Internal server error." });
+        res.status(500).send({ statusCode: 500, message: "Internal server error." });
     }
 
 }
@@ -55,7 +55,7 @@ const deleteObra = async (req, res) => {
         res.send(obras)
     } catch (error) {
         console.log("Error: ", error);
-        res.send({ statusCode: 500, message: "Internal server error." });
+        res.status(500).send({ statusCode: 500, message: "Internal server error." });
     }
 
 }
