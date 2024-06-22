@@ -6,7 +6,7 @@ const getCollections = async (req, res) => {
         res.send(collections)
     } catch (error) {
         console.log("Error: ", error);
-        res.send({ statusCode: 500, message: "Internal server error." });
+        res.status(500).send({ statusCode: 500, message: "Internal server error." });
     }
 
 }
@@ -18,7 +18,7 @@ const getCollectionById = async (req, res) => {
         res.send(collections)
     } catch (error) {
         console.log("Error: ", error);
-        res.send({ statusCode: 500, message: "Internal server error." });
+        res.status(500).send({ statusCode: 500, message: "Internal server error." });
     }
 
 }
@@ -30,7 +30,7 @@ const postCollection = async (req, res) => {
         res.send(collections)
     } catch (error) {
         console.log("Error: ", error);
-        res.send({ statusCode: 500, message: "Internal server error." });
+        res.status(500).send({ statusCode: 500, message: "Internal server error." });
     }
 
 }
@@ -43,7 +43,7 @@ const updateCollection = async (req, res) => {
         res.send(collections)
     } catch (error) {
         console.log("Error: ", error);
-        res.send({ statusCode: 500, message: "Internal server error." });
+        res.status(500).send({ statusCode: 500, message: "Internal server error." });
     }
 
 }
@@ -55,7 +55,7 @@ const deleteCollection = async (req, res) => {
         res.send(obras)
     } catch (error) {
         console.log("Error: ", error);
-        res.send({ statusCode: 500, message: "Internal server error." });
+        res.status(500).send({ statusCode: 500, message: "Internal server error." });
     }
 
 }

@@ -6,7 +6,7 @@ const getUsers = async (req, res) => {
         res.send(users)
     } catch (error) {
         console.log("Error: ", error);
-        res.send({ statusCode: 500, message: "Internal server error." });
+        res.status(500).send({ statusCode: 500, message: "Internal server error." });
     }
 }
 
@@ -17,7 +17,7 @@ const getUserById = async (req, res) => {
         res.send(users)
     } catch (error) {
         console.log("Error: ", error);
-        res.send({ statusCode: 500, message: "Internal server error." });
+        res.status(500).send({ statusCode: 500, message: "Internal server error." });
     }
 }
 
@@ -28,7 +28,7 @@ const postUser = async (req, res) => {
         res.send(users)
     } catch (error) {
         console.log("Error: ", error);
-        res.send({ statusCode: 500, message: "Internal server error." });
+        res.status(500).send({ statusCode: 500, message: "Internal server error." });
     }
 
 }
@@ -41,7 +41,7 @@ const updateUser = async (req, res) => {
         res.send(users)
     } catch (error) {
         console.log("Error: ", error);
-        res.send({ statusCode: 500, message: "Internal server error." });
+        res.status(500).send({ statusCode: 500, message: "Internal server error." });
     }
 
 }
@@ -53,7 +53,7 @@ const deleteUser = async (req, res) => {
         res.send(users)
     } catch (error) {
         console.log("Error: ", error);
-        res.status(404).send({ statusCode: 500, message: "Internal server error." });
+        res.status(500).send({ statusCode: 500, message: "Internal server error." });
     }
 }
 
