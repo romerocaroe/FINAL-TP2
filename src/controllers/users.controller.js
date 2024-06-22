@@ -42,9 +42,8 @@ const deleteUser = async (req, res) => {
         res.send(users)
     } catch (error) {
         console.log("Error: ", error);
-        res.send({ statusCode: 500, message: "Internal server error." });
+        res.status(404).send({ statusCode: 500, message: "Internal server error." });
     }
-
 }
 
 export default {
