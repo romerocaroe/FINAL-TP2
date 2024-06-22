@@ -17,8 +17,13 @@ const getObras = async () => {
   return obras;
 }
 
+const getObraById = async (id) => {
+  const obra = await Obra.findById({_id: id})
+  return obra
+}
+
 const postObra = async (nuevaObra) => {
-  const newObra = await Obra.insertMany(nuevaObra)
+  const newObra = await Obra.create(nuevaObra)
   return newObra
 }
 
@@ -33,6 +38,6 @@ const deleteObra = async (id) => {
 }
 
 export default {
-  getObras, postObra, updateObra, deleteObra
+  getObras, getObraById, postObra, updateObra, deleteObra
 }
 

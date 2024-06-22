@@ -5,6 +5,11 @@ const getCollections = async () => {
   return collections
 }
 
+const getCollectionById = async (id) => {
+  const collections = await collection.getCollectionById(id)
+  return collections
+}
+
 const postCollection = async (nuevaCollection) => {
   const collections = await collection.postCollection(nuevaCollection)
   return collections
@@ -21,5 +26,5 @@ const deleteCollection = async (id) => {
 }
 
 export default {
-    getCollections, postCollection, updateCollection, deleteCollection
+    getCollections, getCollectionById, postCollection, updateCollection, deleteCollection
 }
