@@ -9,6 +9,11 @@ const getObras = async () => {
   return obras
 }
 
+const getObraById = async (id) => {
+  const obra = await gallery.getObraById(id)
+  return obra
+}
+
 const postObra = async (nuevaObra) => {
   const obras = await gallery.postObra(nuevaObra)
   return obras
@@ -25,5 +30,5 @@ const deleteObra = async (id) => {
 }
 
 export default {
-  getObras, postObra, updateObra, deleteObra
+  getObras, getObraById, postObra, updateObra, deleteObra
 }

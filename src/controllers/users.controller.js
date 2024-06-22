@@ -10,6 +10,17 @@ const getUsers = async (req, res) => {
     }
 }
 
+const getUserById = async (req, res) => {
+    try {
+        const { id } = req.params
+        const users = await service.getUserById(id)
+        res.send(users)
+    } catch (error) {
+        console.log("Error: ", error);
+        res.send({ statusCode: 500, message: "Internal server error." });
+    }
+}
+
 const postUser = async (req, res) => {
     try {
         const nuevoUser = req.body
@@ -47,5 +58,5 @@ const deleteUser = async (req, res) => {
 }
 
 export default {
-    getUsers, updateUser, postUser, deleteUser 
+    getUsers, getUserById, updateUser, postUser, deleteUser 
 }

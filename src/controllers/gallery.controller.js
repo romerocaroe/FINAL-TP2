@@ -11,6 +11,18 @@ const getObras = async (req, res) => {
 
 }
 
+const getObraById = async (req, res) => {
+    try {
+        const { id } = req.params
+        const obra = await service.getObraById(id)
+        res.send(obra)
+    } catch (error) {
+        console.log("Error: ", error);
+        res.send({ statusCode: 500, message: "Internal server error." });
+    }
+
+}
+
 const postObra = async (req, res) => {
     try {
         const nuevaObra = req.body
@@ -49,5 +61,5 @@ const deleteObra = async (req, res) => {
 }
 
 export default {
-    getObras, postObra, updateObra, deleteObra
+    getObras, getObraById, postObra, updateObra, deleteObra
 }

@@ -11,6 +11,18 @@ const getCollections = async (req, res) => {
 
 }
 
+const getCollectionById = async (req, res) => {
+    try {
+        const { id } = req.params
+        const collections = await service.getCollectionById(id)
+        res.send(collections)
+    } catch (error) {
+        console.log("Error: ", error);
+        res.send({ statusCode: 500, message: "Internal server error." });
+    }
+
+}
+
 const postCollection = async (req, res) => {
     try {
         const nuevaCollection = req.body
@@ -49,5 +61,5 @@ const deleteCollection = async (req, res) => {
 }
 
 export default {
-    getCollections, postCollection, updateCollection, deleteCollection
+    getCollections, getCollectionById, postCollection, updateCollection, deleteCollection
 }

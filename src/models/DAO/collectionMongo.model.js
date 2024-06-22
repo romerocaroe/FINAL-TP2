@@ -8,23 +8,26 @@ const getCollections = async () => {
   return Collections;
 }
 
+const getCollectionById = async (id) => {
+  const coleccion = await Collection.findById({ _id: id})
+  return coleccion;
+}
+
 const postCollection = async (nuevaCollection) => {
-  const newCollection = await Collection.insertMany(nuevaCollection)
+  const newCollection = await Collection.create(nuevaCollection)
   return newCollection
 }
 
 const updateCollection = async (id, actualizacionCollection) => {
-  const log = await Collection.updateOne({_id: id}, actualizacionCollection)
-  console.log(log);
+  await Collection.updateOne({_id: id}, actualizacionCollection)
   return actualizacionCollection
 }
 
 const deleteCollection = async (id) => {
-  const log = await Collection.deleteOne(({ _id: id}))
-  console.log(log);
+  await Collection.deleteOne({ _id: id})
   return "Collection eliminado correctamente"
 }
 
 export default {
-  getCollections, postCollection, updateCollection, deleteCollection
+  getCollections, getCollectionById, postCollection, updateCollection, deleteCollection
 }
