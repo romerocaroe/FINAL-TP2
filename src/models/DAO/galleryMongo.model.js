@@ -1,19 +1,51 @@
 import mongoose from 'mongoose'
+import axios from 'axios';
 import obra from "../obra.schema.js"
 
-/* const getObrasHarvard = async () => {
-  axios
-    .get(process.env.API_HARVARD)
-    .then(response => {
-      console.log(response)
+const normalizeData = (obras) => {
+  let obrasNormalizadas = []
+  obras.forEach(obra => {
+    obrasNormalizadas.push({
+      title: obra.title,
+      description: obra.description,
+      author: obra.people[0].name,
+      technique: obra.technique,
+      image: obra.primaryimageurl,
+      culture: obra.culture,
+      url: obra.url,
+      division: obra.division,
+      date: new Date()
     })
-    .catch(error => console.log(error))
-} */
+  });
+  return obrasNormalizadas
+}
+
+const getObrasHarvard = async () => {
+  try {
+    let obras = await axios.get(process.env.API_HARVARD)
+    return normalizeData(obras.data.records)
+  } catch(err){
+    console.log(err)
+  }
+}
+
+const addObras = async () => {
+  let obras = await getObrasHarvard()
+  if(obras.length > 0){
+    for (let i = 0; i < obras.length; i++) {
+      const obra = obras[i];
+      await postObra(obra)
+    }
+  }
+}
 
 const Obra = mongoose.model('Obra', obra);
 
 const getObras = async () => {
   const obras = await Obra.find({})
+  if(obras.length <= 0){
+    await addObras()
+  }
   return obras;
 }
 
