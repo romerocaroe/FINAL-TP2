@@ -14,7 +14,6 @@ router.delete("/obra/:id", controllerGallery.deleteObra)
 
 //PNT2
 router.get("/usuario", controllerUsers.getUsers)
-router.get("/usuario/:id", controllerUsers.getUserById)
 router.get("/usuario/:username-:password", controllerUsers.getUserByUsername)
 router.post("/usuario", controllerUsers.postUser)
 router.put("/usuario/:id", controllerUsers.updateUser)
@@ -25,6 +24,13 @@ router.patch("/usuario/coleccion/:idUsuario-:idCollection-:idObra", controllerUs
 router.patch("/usuario/likes/:idUsuario-:idObra", controllerUsers.addObraToLikes)//TODO: pasar data al body
 router.patch("/usuario/coleccion/:idUsuario-:idCollection-:idObra", controllerUsers.deleteObraFromCollection) //TODO:
 router.patch("/usuario/likes/:idUsuario-:idObra", controllerUsers.deleteObraFromLikes) //TODO: pasar data al body
+
+/* router.patch("/usuario/coleccion/", controllerUsers.addCollectionToUser)//TODO: pasar data al body
+router.patch("/usuario/coleccion/obra", controllerUsers.addObraToCollectionFromUser)//TODO: pasar data al body
+router.patch("/usuario/likes/", controllerUsers.addObraToLikes)//TODO: pasar data al body
+router.patch("/usuario/coleccion/:idUsuario", controllerUsers.deleteObraFromCollection) //TODO:
+router.patch("/usuario/likes/:idUsuario", controllerUsers.deleteObraFromLikes) //TODO: pasar data al body
+ */
 
 router.get("/coleccion", collectionController.getCollections)
 router.get("/coleccion/:id", collectionController.getCollectionById)

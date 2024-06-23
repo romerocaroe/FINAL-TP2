@@ -1,5 +1,5 @@
 import mongoose from 'mongoose'
-import collection from "../collection.schema.js"
+import collection from "../../schemas/collection.schema.js"
 
 const Collection = mongoose.model('Collection', collection);
 
