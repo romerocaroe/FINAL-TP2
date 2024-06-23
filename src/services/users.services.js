@@ -5,6 +5,11 @@ const getUsers = async () => {
   return users
 }
 
+const getUserById = async (id) => {
+  const users = await Users.getUserById(id)
+  return users
+}
+
 const getUserByUsername = async (username, password) => {
   const users = await Users.getUserByUsername(username, password)
   return users
@@ -20,11 +25,36 @@ const updateUser = async (id, actualizacionUser) => {
   return users
 }
 
+const addCollectionToUser = async (idUsuario, idCollection) => {
+  const users = await Users.addCollectionToUser(idUsuario, idCollection) 
+  return users
+}
+
+const addObraToCollectionFromUser = async (idUsuario, idCollection, obra) => {
+  const users = await Users.addObraToCollectionFromUser(idUsuario, idCollection, obra)
+  return users
+}
+
+const addObraToLikes = async (idUsuario, obra) => {
+  const users = await Users.addObraToLikes(idUsuario, obra)
+  return users
+}
+
+const deleteObraFromCollection = async (idUsuario, idCollection, idObra) => {
+  const users = await Users.deleteObraFromCollection(idUsuario, idCollection, idObra)
+  return users
+}
+
+const deleteObraFromLikes = async (idUsuario, idObra) => {
+  const users = await Users.deleteObraFromLikes(idUsuario, idObra)
+  return users
+}
+ 
 const deleteUser = async (id) => {
   const users = await Users.deleteUser(id)
   return users
 }
 
 export default {
-  getUsers, getUserByUsername, postUser, updateUser, deleteUser
+  getUsers, getUserById, getUserByUsername, postUser, updateUser, deleteUser, addCollectionToUser, addObraToCollectionFromUser, addObraToLikes, deleteObraFromCollection, deleteObraFromLikes
 }
