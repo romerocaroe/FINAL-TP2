@@ -1,4 +1,5 @@
 import service from '../services/users.services.js'
+import obraService from '../services/gallery.services.js'
 
 const getUsers = async (req, res) => {
     try {
@@ -8,6 +9,17 @@ const getUsers = async (req, res) => {
     } catch (error) {
         console.log("Error: ", error);
         res.status(500).send({ statusCode: 500, message: "Internal server error." });
+    }
+}
+
+const getUserById = async (req, res) => {
+    try {
+        const { id } = req.params
+        const users = await service.getUserById(id)
+        res.send(users)
+    } catch (error) {
+        console.log("Error: ", error);
+        res.send({ statusCode: 500, message: "Internal server error." });
     }
 }
 
@@ -47,6 +59,65 @@ const updateUser = async (req, res) => {
 
 }
 
+const addCollectionToUser = async (req, res) => {
+    try {
+        const {idUsuario, idCollection} = req.params
+        const users = await service.addCollectionToUser(idUsuario, idCollection)
+        res.send(users)
+    } catch (error) {
+        console.log("Error: ", error);
+        res.status(500).send({ statusCode: 500, message: "Internal server error." });
+    }
+}
+
+const addObraToCollectionFromUser = async (req, res) => {
+    try {
+        const {idUsuario, idCollection, idObra} = req.params
+        console.log(req.params);
+        const addObra = await obraService.getObraById(idObra)
+        const users = await service.addObraToCollectionFromUser(idUsuario, idCollection, addObra)
+        res.send(users)
+    } catch (error) {
+        console.log("Error: ", error);
+        res.status(500).send({ statusCode: 500, message: "Internal server error." });
+    }
+}
+
+const addObraToLikes = async (req, res) => {
+    try {
+        const {idUsuario, idObra} = req.params
+        const obra = await obraService.getObraById(idObra)
+        console.log(obra);
+        const users = await service.addObraToLikes(idUsuario, obra)
+        res.send(users)
+    } catch (error) {
+        console.log("Error: ", error);
+        res.status(500).send({ statusCode: 500, message: "Internal server error." });
+    }
+}
+
+const deleteObraFromCollection = async (req, res) => {
+    try {
+        const {idUsuario,idCollection, idObra } = req.params
+        const users = await service.deleteObraFromCollection(idUsuario, idCollection, idObra)
+        res.send(users)
+    } catch (error) {
+        console.log("Error: ", error);
+        res.status(500).send({ statusCode: 500, message: "Internal server error." });
+    }
+}
+
+const deleteObraFromLikes = async (req, res) => {
+    try {
+        const {idUsuario, idObra} = req.params
+        const users = await service.deleteObraFromLikes(idUsuario, idObra) 
+        res.send(users)
+    } catch (error) {
+        console.log("Error: ", error);
+        res.status(500).send({ statusCode: 500, message: "Internal server error." });
+    }
+}
+
 const deleteUser = async (req, res) => {
     try {
         const {id} = req.params
@@ -58,6 +129,9 @@ const deleteUser = async (req, res) => {
     }
 }
 
+
+
 export default {
-    getUsers, getUserByUsername, updateUser, postUser, deleteUser 
+    getUsers, getUserById, getUserByUsername, updateUser, postUser, deleteUser, addCollectionToUser, addObraToCollectionFromUser, addObraToLikes, deleteObraFromCollection, deleteObraFromLikes
+
 }

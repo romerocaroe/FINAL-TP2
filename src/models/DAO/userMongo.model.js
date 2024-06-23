@@ -1,11 +1,17 @@
 import mongoose from 'mongoose'
 import user from "../user.schema.js"
+import coleccion from './collectionMongo.model.js';
 
 const User = mongoose.model('User', user);
 
 const getUsers = async () => {
   const Users = await User.find({})
   return Users;
+}
+
+const getUserById = async (id) => {
+  const usuario = await User.findById({ _id: id})
+  return usuario;
 }
 
 const getUserByUsername = async (username, password) => {
@@ -23,11 +29,56 @@ const updateUser = async (id, actualizacionUser) => {
     return actualizacionUser
 }
 
+const addCollectionToUser = async (idUsuario, idCollection) => {
+  const collection = await coleccion.getCollectionById(idCollection)
+  await User.findOneAndUpdate({ _id: idUsuario },
+    { $addToSet: { collections: collection } },
+    { new: true });
+
+  return "Colección añadida a Usuario"
+}
+
+const addObraToCollectionFromUser = async (idUsuario, idCollection, obra) => {
+  await coleccion.addObraToCollection(idCollection, obra)
+
+  /* const coleccion = usuario.collections.find(item => item.id === idCollection)
+  if (coleccion != undefined) {
+    coleccion.push(obra)
+    return "Obra añadidad a colección"
+  } */
+
+  return "Obra añadida a colección"
+}
+
+const addObraToLikes = async (idUsuario, obra) => {
+  await User.findOneAndUpdate({ _id: idUsuario },
+    { $addToSet: { likes: obra } },
+    { new: true });
+}
+
+const deleteObraFromCollection = async (idUsuario, idCollection, idObra) => {
+  const usuario = await getUserById(idUsuario)
+  const coleccion = usuario.collections.find(item => item.id === idCollection)
+  if (coleccion != undefined) {
+    const indexObra = coleccion.findIndex(item => item.id === idObra)
+    if (indexObra !== -1) {
+      coleccion.splice(indexObra, 1) 
+      return "Obra eliminada correctamente de colección"
+    }
+  }
+}
+
+const deleteObraFromLikes = async (idUsuario, idObra) => {
+  await User.findOneAndUpdate({ _id: idUsuario },
+    { $pull: { likes: idObra } });
+  return "Obra eliminada de likes"
+}
+
 const deleteUser = async (id) => {
     await User.deleteOne({ _id: id})
     return "User eliminado correctamente"
 }
 
 export default {
-  getUsers, getUserByUsername, postUser, updateUser, deleteUser
+  getUsers, getUserById, getUserByUsername, postUser, updateUser, deleteUser, addCollectionToUser, addObraToCollectionFromUser, addObraToLikes, deleteObraFromCollection, deleteObraFromLikes
 }

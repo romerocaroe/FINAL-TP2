@@ -18,6 +18,12 @@ const postCollection = async (nuevaCollection) => {
   return newCollection
 }
 
+const addObraToCollection = async (idCollection, obra) => {
+  await Collection.findOneAndUpdate({ _id: idCollection },
+    { $addToSet: { obras: obra } },
+    { new: true });
+}
+
 const updateCollection = async (id, actualizacionCollection) => {
   await Collection.updateOne({_id: id}, actualizacionCollection)
   return actualizacionCollection
@@ -29,5 +35,5 @@ const deleteCollection = async (id) => {
 }
 
 export default {
-  getCollections, getCollectionById, postCollection, updateCollection, deleteCollection
+  getCollections, getCollectionById, postCollection, updateCollection, deleteCollection, addObraToCollection
 }

@@ -50,6 +50,7 @@ const getObras = async () => {
 }
 
 const getObraById = async (id) => {
+  console.log(id);
   const obra = await Obra.findById({_id: id})
   return obra
 }
