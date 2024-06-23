@@ -4,13 +4,13 @@ import user from "../user.schema.js"
 const User = mongoose.model('User', user);
 
 const getUsers = async () => {
-  const Users = await User.find({}) //.toArray()
+  const Users = await User.find({})
   return Users;
 }
 
-const getUserById = async (id) => {
-  const usuario = await User.findById({ _id: id})
-  return usuario;
+const getUserByUsername = async (username, password) => {
+  const UserFinded = await User.find({ username: username, password: password})
+  return UserFinded;
 }
 
 const postUser = async (nuevaUser) => {
@@ -29,5 +29,5 @@ const deleteUser = async (id) => {
 }
 
 export default {
-  getUsers, getUserById, postUser, updateUser, deleteUser
+  getUsers, getUserByUsername, postUser, updateUser, deleteUser
 }

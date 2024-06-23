@@ -12,7 +12,7 @@ router.put("/obra/:id", controllerGallery.updateObra)
 router.delete("/obra/:id", controllerGallery.deleteObra)
 
 router.get("/usuario", controllerUsers.getUsers)
-router.get("/usuario/:id", controllerUsers.getUserById)
+router.get("/usuario/:username-:password", controllerUsers.getUserByUsername)
 router.post("/usuario", controllerUsers.postUser)
 router.put("/usuario/:id", controllerUsers.updateUser)
 router.delete("/usuario/:id", controllerUsers.deleteUser)

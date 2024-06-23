@@ -5,8 +5,8 @@ const getUsers = async () => {
   return users
 }
 
-const getUserById = async (id) => {
-  const users = await Users.getUserById(id)
+const getUserByUsername = async (username, password) => {
+  const users = await Users.getUserByUsername(username, password)
   return users
 }
 
@@ -26,5 +26,5 @@ const deleteUser = async (id) => {
 }
 
 export default {
-  getUsers, getUserById, postUser, updateUser, deleteUser
+  getUsers, getUserByUsername, postUser, updateUser, deleteUser
 }
