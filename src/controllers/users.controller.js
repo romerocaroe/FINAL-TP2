@@ -3,6 +3,7 @@ import service from '../services/users.services.js'
 const getUsers = async (req, res) => {
     try {
         const users = await service.getUsers()
+        console.log(users)
         res.send(users)
     } catch (error) {
         console.log("Error: ", error);
@@ -10,10 +11,10 @@ const getUsers = async (req, res) => {
     }
 }
 
-const getUserById = async (req, res) => {
+const getUserByUsername = async (req, res) => {
     try {
-        const { id } = req.params
-        const users = await service.getUserById(id)
+        const { username, password } = req.params
+        const users = await service.getUserByUsername(username, password)
         res.send(users)
     } catch (error) {
         console.log("Error: ", error);
@@ -58,5 +59,5 @@ const deleteUser = async (req, res) => {
 }
 
 export default {
-    getUsers, getUserById, updateUser, postUser, deleteUser 
+    getUsers, getUserByUsername, updateUser, postUser, deleteUser 
 }
