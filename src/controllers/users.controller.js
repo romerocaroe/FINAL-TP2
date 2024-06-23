@@ -25,7 +25,7 @@ const getUserById = async (req, res) => {
 
 const getUserByUsername = async (req, res) => {
     try {
-        const { username, password } = req.params
+        const { username, password } = req.body
         const users = await service.getUserByUsername(username, password)
         res.send(users)
     } catch (error) {
@@ -110,6 +110,7 @@ const deleteObraFromCollection = async (req, res) => {
 const deleteObraFromLikes = async (req, res) => {
     try {
         const {idUsuario, idObra} = req.params
+        /* const {idObra} = req.body */
         const users = await service.deleteObraFromLikes(idUsuario, idObra) 
         res.send(users)
     } catch (error) {

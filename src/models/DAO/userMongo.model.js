@@ -1,5 +1,5 @@
 import mongoose from 'mongoose'
-import user from "../user.schema.js"
+import user from "../../schemas/user.schema.js"
 import coleccion from './collectionMongo.model.js';
 
 const User = mongoose.model('User', user);
@@ -30,7 +30,7 @@ const updateUser = async (id, actualizacionUser) => {
 }
 
 const addCollectionToUser = async (idUsuario, idCollection) => {
-  const collection = await coleccion.getCollectionById(idCollection)
+  const collection = await coleccion.getCollectionById(idCollection) //postCollection
   await User.findOneAndUpdate({ _id: idUsuario },
     { $addToSet: { collections: collection } },
     { new: true });

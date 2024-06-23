@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 import axios from 'axios';
-import obra from "../obra.schema.js"
+import obra from "../../schemas/obra.schema.js"
 
 const normalizeData = (obras) => {
   let obrasNormalizadas = []
