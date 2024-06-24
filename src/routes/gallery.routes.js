@@ -19,18 +19,12 @@ router.post("/usuario", controllerUsers.postUser)
 router.put("/usuario/:id", controllerUsers.updateUser)
 router.delete("/usuario/:id", controllerUsers.deleteUser)
 
-router.patch("/usuario/coleccion/:idUsuario-:idCollection", controllerUsers.addCollectionToUser)
-router.patch("/usuario/coleccion/:idUsuario-:idCollection-:idObra", controllerUsers.addObraToCollectionFromUser)//TODO: pasar data al body
-router.patch("/usuario/likes/:idUsuario-:idObra", controllerUsers.addObraToLikes)//TODO: pasar data al body
-router.patch("/usuario/coleccion/:idUsuario-:idCollection-:idObra", controllerUsers.deleteObraFromCollection) //TODO:
-router.patch("/usuario/likes/:idUsuario-:idObra", controllerUsers.deleteObraFromLikes) //TODO: pasar data al body
-
-/* router.patch("/usuario/coleccion/", controllerUsers.addCollectionToUser)//TODO: pasar data al body
-router.patch("/usuario/coleccion/obra", controllerUsers.addObraToCollectionFromUser)//TODO: pasar data al body
-router.patch("/usuario/likes/", controllerUsers.addObraToLikes)//TODO: pasar data al body
-router.patch("/usuario/coleccion/:idUsuario", controllerUsers.deleteObraFromCollection) //TODO:
-router.patch("/usuario/likes/:idUsuario", controllerUsers.deleteObraFromLikes) //TODO: pasar data al body
- */
+router.patch("/usuario/coleccion/", controllerUsers.addCollectionToUser)
+router.patch("/usuario/coleccion/obra/", controllerUsers.addObraToCollectionFromUser)
+router.patch("/usuario/likes/", controllerUsers.addObraToLikes)
+router.patch("/usuario/coleccion/:idUsuario", controllerUsers.deleteObraFromCollection) 
+router.patch("/usuario/likes/:idUsuario", controllerUsers.deleteObraFromLikes) 
+router.patch("/usuario/coleccion/delete/:idUsuario", controllerUsers.deleteCollectionFromUser) 
 
 router.get("/coleccion", collectionController.getCollections)
 router.get("/coleccion/:id", collectionController.getCollectionById)

@@ -4,7 +4,6 @@ import obraService from '../services/gallery.services.js'
 const getUsers = async (req, res) => {
     try {
         const users = await service.getUsers()
-        console.log(users)
         res.send(users)
     } catch (error) {
         console.log("Error: ", error);
@@ -25,7 +24,7 @@ const getUserById = async (req, res) => {
 
 const getUserByUsername = async (req, res) => {
     try {
-        const { username, password } = req.body
+        const { username, password } = req.params
         const users = await service.getUserByUsername(username, password)
         res.send(users)
     } catch (error) {
@@ -61,7 +60,7 @@ const updateUser = async (req, res) => {
 
 const addCollectionToUser = async (req, res) => {
     try {
-        const {idUsuario, idCollection} = req.params
+        const {idUsuario, idCollection} = req.body
         const users = await service.addCollectionToUser(idUsuario, idCollection)
         res.send(users)
     } catch (error) {
@@ -72,8 +71,7 @@ const addCollectionToUser = async (req, res) => {
 
 const addObraToCollectionFromUser = async (req, res) => {
     try {
-        const {idUsuario, idCollection, idObra} = req.params
-        console.log(req.params);
+        const {idUsuario, idCollection, idObra} = req.body
         const addObra = await obraService.getObraById(idObra)
         const users = await service.addObraToCollectionFromUser(idUsuario, idCollection, addObra)
         res.send(users)
@@ -85,9 +83,8 @@ const addObraToCollectionFromUser = async (req, res) => {
 
 const addObraToLikes = async (req, res) => {
     try {
-        const {idUsuario, idObra} = req.params
+        const {idUsuario, idObra} = req.body
         const obra = await obraService.getObraById(idObra)
-        console.log(obra);
         const users = await service.addObraToLikes(idUsuario, obra)
         res.send(users)
     } catch (error) {
@@ -98,7 +95,9 @@ const addObraToLikes = async (req, res) => {
 
 const deleteObraFromCollection = async (req, res) => {
     try {
-        const {idUsuario,idCollection, idObra } = req.params
+        const { idUsuario } = req.params
+        const { idCollection, idObra } = req.body
+
         const users = await service.deleteObraFromCollection(idUsuario, idCollection, idObra)
         res.send(users)
     } catch (error) {
@@ -109,9 +108,21 @@ const deleteObraFromCollection = async (req, res) => {
 
 const deleteObraFromLikes = async (req, res) => {
     try {
-        const {idUsuario, idObra} = req.params
-        /* const {idObra} = req.body */
+        const {idUsuario} = req.params
+        const {idObra} = req.body
         const users = await service.deleteObraFromLikes(idUsuario, idObra) 
+        res.send(users)
+    } catch (error) {
+        console.log("Error: ", error);
+        res.status(500).send({ statusCode: 500, message: "Internal server error." });
+    }
+}
+
+const deleteCollectionFromUser = async (req, res) => {
+    try {
+        const {idUsuario} = req.params
+        const {idCollection} = req.body
+        const users = await service.deleteCollectionFromUser(idUsuario, idCollection) 
         res.send(users)
     } catch (error) {
         console.log("Error: ", error);
@@ -133,6 +144,6 @@ const deleteUser = async (req, res) => {
 
 
 export default {
-    getUsers, getUserById, getUserByUsername, updateUser, postUser, deleteUser, addCollectionToUser, addObraToCollectionFromUser, addObraToLikes, deleteObraFromCollection, deleteObraFromLikes
+    getUsers, getUserById, getUserByUsername, updateUser, postUser, deleteUser, addCollectionToUser, addObraToCollectionFromUser, addObraToLikes, deleteObraFromCollection, deleteObraFromLikes, deleteCollectionFromUser
 
 }
