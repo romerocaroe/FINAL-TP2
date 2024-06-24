@@ -22,6 +22,8 @@ const addObraToCollection = async (idCollection, obra) => {
   await Collection.findOneAndUpdate({ _id: idCollection },
     { $addToSet: { obras: obra } },
     { new: true });
+
+   return "Obra añadida a Colección" 
 }
 
 const updateCollection = async (id, actualizacionCollection) => {

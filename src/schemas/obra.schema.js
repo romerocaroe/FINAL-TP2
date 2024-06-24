@@ -2,11 +2,11 @@ import mongoose from 'mongoose'
 const Schema = mongoose.Schema;
 
 const obra = new Schema({
-  title: { type: String, required: true },
+  title: String,
   description: String,
   author: String,
   technique: String,
-  image: { type: String, required: true },
+  image: String,
   culture: String,
   url: String,
   division: String,

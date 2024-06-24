@@ -38,40 +38,70 @@ const addCollectionToUser = async (idUsuario, idCollection) => {
   return "Colección añadida a Usuario"
 }
 
-const addObraToCollectionFromUser = async (idUsuario, idCollection, obra) => {
-  await coleccion.addObraToCollection(idCollection, obra)
 
-  /* const coleccion = usuario.collections.find(item => item.id === idCollection)
-  if (coleccion != undefined) {
-    coleccion.push(obra)
-    return "Obra añadidad a colección"
-  } */
+const addObraToCollectionFromUser = async (idUsuario, idCollection, obra) => {  
+  // await coleccion.addObraToCollection(idCollection, obra)
 
-  return "Obra añadida a colección"
+  // /* const coleccion = usuario.collections.find(item => item.id === idCollection)
+  // if (coleccion != undefined) {
+  //   coleccion.push(obra)
+  //   return "Obra añadidad a colección"
+  // } */
+
+  const usuario = await User.findById(idUsuario)
+  const colec = usuario.collections.find(item => item._id.toString() === idCollection)
+  if(colec != undefined){
+    const obras = colec.obras
+    obras.push(obra)
+    await usuario.save()
+    return "Obra añadida a Colección"
+  }
 }
 
 const addObraToLikes = async (idUsuario, obra) => {
   await User.findOneAndUpdate({ _id: idUsuario },
     { $addToSet: { likes: obra } },
     { new: true });
+    return "Obra añadida a likes"  
 }
 
 const deleteObraFromCollection = async (idUsuario, idCollection, idObra) => {
-  const usuario = await getUserById(idUsuario)
-  const coleccion = usuario.collections.find(item => item.id === idCollection)
-  if (coleccion != undefined) {
-    const indexObra = coleccion.findIndex(item => item.id === idObra)
-    if (indexObra !== -1) {
-      coleccion.splice(indexObra, 1) 
-      return "Obra eliminada correctamente de colección"
+  // const usuario = await getUserById(idUsuario)
+  // const coleccion = usuario.collections.find(item => item.id === idCollection)
+  // if (coleccion != undefined) {
+  //   const indexObra = coleccion.findIndex(item => item.id === idObra)
+  //   if (indexObra !== -1) {
+  //     coleccion.splice(indexObra, 1) 
+  //     return "Obra eliminada correctamente de colección"
+  //   }
+  // }
+  
+  const usuario = await User.findById(idUsuario);
+    const colec = usuario.collections.find(item => item._id.toString() === idCollection)
+    if(colec != undefined){
+      const indexObra = colec.obras.findIndex(obra => obra._id.toString() === idObra);
+      if (indexObra !== -1) {
+        colec.obras.splice(indexObra, 1)
+        await usuario.save();
+        return "Obra eliminada correctamente de Colección";
+      }
+      
     }
-  }
+  
 }
 
 const deleteObraFromLikes = async (idUsuario, idObra) => {
   await User.findOneAndUpdate({ _id: idUsuario },
-    { $pull: { likes: idObra } });
+    { $pull: { likes: { _id: idObra }}},
+    { new: true });
   return "Obra eliminada de likes"
+}
+
+const deleteCollectionFromUser = async (idUsuario, idCollection) => {
+  await User.findOneAndUpdate({_id: idUsuario}, 
+    { $pull : { collections: {_id: idCollection}}},
+    { new: true });
+  return "Colección eliminada de Usuario"
 }
 
 const deleteUser = async (id) => {
@@ -80,5 +110,5 @@ const deleteUser = async (id) => {
 }
 
 export default {
-  getUsers, getUserById, getUserByUsername, postUser, updateUser, deleteUser, addCollectionToUser, addObraToCollectionFromUser, addObraToLikes, deleteObraFromCollection, deleteObraFromLikes
+  getUsers, getUserById, getUserByUsername, postUser, updateUser, deleteUser, addCollectionToUser, addObraToCollectionFromUser, addObraToLikes, deleteObraFromCollection, deleteObraFromLikes, deleteCollectionFromUser
 }
