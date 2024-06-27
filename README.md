@@ -17,22 +17,36 @@ npm run watch
 ## Rutas
 Obras / Colecciones / Usuarios (GET-POST-PUT-DELETE)
 ```
-http://localhost:8080/obra
+http://localhost:5000/obra
 ```
 ```
-http://localhost:8080/coleccion
+http://localhost:5000/coleccion
 ```
 ```
-http://localhost:8080/usuario
+http://localhost:5000/usuario
 ```
 
 Obtener/Actualizar/Eliminar por ID (en el caso de actualizar enviar en el body la información actualizada)
 ```
-http://localhost:8080/obra/ID
+http://localhost:5000/obra/ID
 ```
 ```
-http://localhost:8080/coleccion/ID
+http://localhost:5000/coleccion/ID
 ```
 ```
-http://localhost:8080/usuario/ID
+http://localhost:5000/usuario/ID
+```
+## Envío de información
+Para enviar información, ejemplo, en la creación obras, se refiere enviar en el body con formato JSON:
+```json
+{
+  "title":"",
+  "description": "",
+  "author": "",
+  "technique": "",
+  "image": "",
+  "culture": "",
+  "url": "",
+  "division": ""
+}
 ```
